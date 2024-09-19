@@ -28,7 +28,7 @@ def convert_to_numeric(value):
             return float(value.replace('K', '')) * 1e3  # Convert thousands to numeric
     return float(value)  
 
-df_leader = pd.read_csv("archive\Current Crypto leaderboard.csv")
+df_leader = pd.read_csv("archive/Current Crypto leaderboard.csv")
 
 def summary_page():
     st.write("*An OKX assessment by Ben Cheong*")
@@ -148,7 +148,7 @@ def summary_page():
             df = df.sort_values(by='Date')
             
             # Extract cryptocurrency name from the file name
-            crypto_name = file.split('\\')[-1].replace('.csv', '')
+            crypto_name = file.split('/')[-1].replace('.csv', '')
             
             # Check if there are enough rows to calculate volatility
             if len(df) > 1:
@@ -207,7 +207,7 @@ def summary_page():
 
     for file in csv_files:
         crypto_name = file.replace('.csv', '').replace(' ', '_')  # Extract crypto name from the file name, replace spaces with underscores
-        df = pd.read_csv(os.path.join("archive\Top 100 Crypto Coins", file))
+        df = pd.read_csv(os.path.join("archive/Top 100 Crypto Coins", file))
         
         df['Date'] = pd.to_datetime(df['Date'])
         
@@ -266,7 +266,7 @@ def individual_page():
     folder_path = "archive/Top 100 Crypto Coins/"  
     csv_files = glob.glob(f"{folder_path}/*.csv")
 
-    cryptos = [file.split('\\')[-1].replace('.csv', '').replace(' ', '_') for file in csv_files]
+    cryptos = [file.split('/')[-1].replace('.csv', '').replace(' ', '_') for file in csv_files]
 
     selected_crypto = st.selectbox('Select a Cryptocurrency', cryptos)
 
@@ -358,8 +358,8 @@ def prediction_page():
         return features, target
 
     folder_path = "archive/Top 100 Crypto Coins/"
-    csv_files = glob.glob(f"{folder_path}\*.csv")
-    cryptos = [file.split('\\')[-1].replace('.csv', '').replace(' ', '_') for file in csv_files]
+    csv_files = glob.glob(f"{folder_path}/*.csv")
+    cryptos = [file.split('/')[-1].replace('.csv', '').replace(' ', '_') for file in csv_files]
 
     selected_crypto = st.selectbox('Select a Cryptocurrency', cryptos)
     selected_file = f"{folder_path}/{selected_crypto.replace('_', ' ')}.csv"
