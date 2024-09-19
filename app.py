@@ -91,8 +91,8 @@ def summary_page():
 
     performance_list = []
 
-    for file in os.listdir("archive\Top 100 Crypto Coins"):
-        df = pd.read_csv(os.path.join("archive\Top 100 Crypto Coins", file))
+    for file in os.listdir("archive/Top 100 Crypto Coins"):
+        df = pd.read_csv(os.path.join("archive/Top 100 Crypto Coins", file))
         
         df['Date'] = pd.to_datetime(df['Date'])
         
